@@ -1,0 +1,30 @@
+.row {
+  /* margin: 1rem 10rem 0 10rem ; */
+  text-align: center;
+  font-size: medium;
+  margin: 1rem;
+}
+.label-large {
+  font-size: 20px;
+}
+.input-field input {
+  border-bottom-color: palevioletred !important;
+}
+.input-field label {
+  font-size: 17px;
+  color: palevioletred;
+}
+.input-field label:focus {
+    font-size: 17px;
+    color: palevioletred;
+  }
+
+.input-field input:focus + label {
+
+  font-weight: 500;
+  color: palevioletred !important;
+}
+.div-seletor {
+  margin: 1rem 10rem;
+  text-align: center;
+}
