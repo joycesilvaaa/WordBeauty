@@ -4,7 +4,7 @@ import CpfService from "./cpfService";
 import RgService from "./rgService";
 import TelefoneService from "./telefoneService";
 import { Connection } from "../../database/data-source";
-import { ICreateCliente, IReadCliente, IUpdateCliente } from "../../Interface/Cliente/ICliente";
+import { ICreateCliente, IUpdateCliente } from "../../Interface/Cliente/ICliente";
 import { IReadtelefone } from "../../Interface/Cliente/ITefefone";
 import { IReadRg } from "../../Interface/Cliente/IRg";
 

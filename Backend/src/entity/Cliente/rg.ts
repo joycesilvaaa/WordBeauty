@@ -1,7 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne,  PrimaryGeneratedColumn } from "typeorm";
 import Cliente from "./cliente";
 
-@Entity({ name:'Rg' })
+@Entity({ name:'rg' })
 class Rg {
     @PrimaryGeneratedColumn({ type: 'int'})
     rgId: number

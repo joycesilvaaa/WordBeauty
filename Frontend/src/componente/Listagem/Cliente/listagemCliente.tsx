@@ -73,7 +73,7 @@ function ListagemCliente() {
             <Card
               key={cliente.cliId}
               className="card"
-              style={{ margin: "10px" }}
+              
             >
               <Card.Header
                 style={{ backgroundColor: "lightcoral", color: "white" }}

@@ -115,7 +115,7 @@ function ListagemProduto() {
         <>
           {produtos && produtos.length > 0 ? (
             produtos.map((produto, index) => (
-              <Card className="card" key={index}>
+              <Card className="card" key={index} >
                 <Card.Header
                   style={{ backgroundColor: "lightcoral", color: "white", textAlign: 'center'  }}
                 >
@@ -229,7 +229,7 @@ function ListagemProduto() {
         <>
         {produtos && produtos.length > 0 ? (
               produtos.map((produto, index) => (
-                <Card className="card" key={index}>
+                <Card className="card" key={index} >
                   <Card.Header
                     style={{ backgroundColor: "lightcoral", color: "white" , textAlign: 'center'}}
                   >

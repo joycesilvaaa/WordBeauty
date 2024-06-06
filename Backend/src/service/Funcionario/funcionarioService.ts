@@ -20,7 +20,6 @@ class  FuncionarioService{
                 return { success: false, message: `Funcionario já cadastrado!`}
             }
             const senhaCriptografada = await bcrypt.hash(funcionarioData.senha, 10)
-            console.log(senhaCriptografada)
             funcionarioData.senha = senhaCriptografada
             const novoFuncionario = await this.funcionarioRepository.create(funcionarioData)
             await this.funcionarioRepository.save(novoFuncionario)
@@ -43,8 +42,7 @@ class  FuncionarioService{
             if(!bcrypt.compareSync(loginData.senha, funcionario.senha)){
                 return { success: false, message: `Dados incorretos!` }
             }
-            console.log(funcionario)
-            const senhaSecreta = 'senha'
+            const senhaSecreta = process.env.SECRET
             const token = jwt.sign({ id: funcionario.funcionarioId }, senhaSecreta, { expiresIn: '5h' }  )
             return { success: true, message: `Autenticação realizada com sucesso!`, token}
         }catch(error){

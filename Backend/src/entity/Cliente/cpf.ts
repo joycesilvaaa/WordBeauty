@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn,  OneToOne, PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 import Cliente from "./cliente";
 
-@Entity({ name:'Cpf' })
+@Entity({ name:'cpf' })
 class Cpf {
 
     @PrimaryGeneratedColumn({ type: 'int'})

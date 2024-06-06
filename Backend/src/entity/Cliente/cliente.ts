@@ -4,7 +4,7 @@ import Cpf from "./cpf";
 import Telefone from "./telefone";
 import Venda from "../Venda/venda";
 
- @Entity({ name: 'Cliente'})
+ @Entity({ name: 'cliente'})
 class Cliente{
     
     @PrimaryGeneratedColumn({ type: 'int' })

@@ -12,7 +12,6 @@ class ServicoController{
     public async criarServico(req:Request, res: Response){
         try{
             const servicoData: ICreateServico = req.body
-            console.log(servicoData)
             const resultado = await this.servicoService.criarServico(servicoData)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
@@ -28,7 +27,6 @@ class ServicoController{
         try{
             const id = req.params.id
             const resultado = await this.servicoService.verServico(parseInt(id))
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }
@@ -71,8 +69,6 @@ class ServicoController{
     public async listarServicos(req:Request, res: Response){
         try{
             const resultado = await this.servicoService.listarServico()
-            console.log(resultado)
-
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }
@@ -87,7 +83,6 @@ class ServicoController{
         try{
             const genero: string = req.body.genero
             const resultado = await this.servicoService.listarMaisConsumidosGenero(genero)
-            
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }
@@ -101,7 +96,6 @@ class ServicoController{
     public async listarMaisConsumidos(req:Request, res: Response){
         try{
             const resultado = await this.servicoService.listarMaisConsumidos()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }
@@ -115,7 +109,6 @@ class ServicoController{
     public async listarClientesMaisConsumiramValor(req:Request, res: Response){
         try{
             const resultado = await this.servicoService.listarClientesMaisConsumiramValor()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }
@@ -129,7 +122,6 @@ class ServicoController{
     public async listarClientesMaisCondumiramQuantidade(req:Request, res: Response){
         try{
             const resultado = await this.servicoService.listarClientesMaisConsumiramQuantidade()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }

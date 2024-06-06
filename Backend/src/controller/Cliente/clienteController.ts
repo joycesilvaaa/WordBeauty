@@ -12,9 +12,7 @@ class ClienteController{
     public async criarCliente(req: Request, res: Response){
         try{
             const clienteData: ICreateCliente = req.body
-            console.log(clienteData)
             const resultado = await this.clienteService.criarCliente(clienteData)
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })
             }
@@ -29,9 +27,7 @@ class ClienteController{
         try{
             const id = req.params.id
             const clienteUpdateData: IUpdateCliente = req.body
-            console.log(clienteUpdateData)
             const resultado = await this.clienteService.atualizaCliente(parseInt(id), clienteUpdateData)
-            console.log(resultado.message)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
@@ -61,8 +57,6 @@ class ClienteController{
         try{
             const id = req.params.id
             const resultado = await this.clienteService.deletarCliente(parseInt(id))
-            console.log(resultado)
-            
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
@@ -90,7 +84,6 @@ class ClienteController{
         try{
             const genero = req.body.genero
             const resultado = await this.clienteService.listarClientesGenero(genero)
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }

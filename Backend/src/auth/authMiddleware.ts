@@ -6,17 +6,17 @@ export class AuthMiddleware{
         try{
             const authHeader = req.headers['authorization'];
             const token = authHeader && authHeader.split(' ')[1];
-            // const secret = process.env.SECRET;
+            const secret = process.env.SECRET;
 
             if (!token) {
                 return res.status(401).json({ success: false, message: `Token de autenticação não fornecido` });
             }
 
-            // if (!secret) {
-            //     return res.status(500).json({ success: false, message: `Erro interno do servidor` });
-            // }
-            const senhaSecreta = 'senha'
-            jwt.verify(token, senhaSecreta) 
+            if (!secret) {
+                return res.status(500).json({ success: false, message: `Erro interno do servidor` });
+            }
+            
+            jwt.verify(token, secret) 
             next()
         }catch(error){
             console.error(`Erro ao verificar token: ${error}`)

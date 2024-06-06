@@ -11,7 +11,6 @@ class VendaController{
     public async registrarVenda(req: Request, res: Response){
         try{
             const vendaData : ICreateVenda = req.body
-            console.log(vendaData)
             const resultado = await this.vendaService.cadastraVenda(vendaData)
             if(!resultado.success){
                 return res.status(400).json({ message: resultado.message })

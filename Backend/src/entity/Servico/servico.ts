@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "t
 import Cliente from "../Cliente/cliente";
 import Venda from "../Venda/venda";
 
-@Entity({ name: 'Servico'})
+@Entity({ name: 'servico'})
 class Servico{
 
     @PrimaryGeneratedColumn({ type: 'int' })

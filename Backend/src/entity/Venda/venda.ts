@@ -4,7 +4,7 @@ import Produto from "../Produto/produto";
 import Servico from "../Servico/servico";
 import Funcionario from "../Funcionario/funcionario";
 
-@Entity({ name: 'Venda' })
+@Entity({ name: 'venda' })
 class Venda{
     @PrimaryGeneratedColumn({ type: 'int' })
     vendaId: number

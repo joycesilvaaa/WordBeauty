@@ -68,7 +68,6 @@ class ProdutoController{
     public async listarProdutos(req: Request, res: Response){
         try{
             const resultado = await this.produtoService.listaProdutos()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
@@ -82,9 +81,7 @@ class ProdutoController{
     public async listarMaisConsumidosGenero(req: Request, res: Response){
         try{
             const genero :string = req.body.genero
-            console.log(genero)
             const resultado = await this.produtoService.listaMaisConsumidosGenero(genero)
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
@@ -99,7 +96,6 @@ class ProdutoController{
         try{
 
             const resultado = await this.produtoService.listarMaisConsumidos()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
@@ -114,7 +110,6 @@ class ProdutoController{
         try{
 
             const resultado = await this.produtoService.listarClientesMaisConsumiramValor()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
@@ -129,7 +124,6 @@ class ProdutoController{
         try{
 
             const resultado = await this.produtoService.listarClientesMaisConsumiramQuantidade()
-            console.log(resultado)
             if(!resultado.success){
                 return res.status(404).json({ message: resultado.message })
             }
