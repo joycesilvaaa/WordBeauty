@@ -3,7 +3,7 @@
 ## Para Rodar o Projeto:
  - Clone este repositório.
 >
-   git clone https://github.com/joycesilvaaa/WorldBeauty.git
+    git clone https://github.com/joycesilvaaa/WorldBeauty.git
 >
  - Para cada diretório, abra um terminal.
 <h2>📌Frontend</h2>
