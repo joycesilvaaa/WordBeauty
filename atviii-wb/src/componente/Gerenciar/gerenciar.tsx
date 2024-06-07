@@ -51,8 +51,8 @@ function Gerenciar({ tipo }: GerenciarProps) {
           content = <FormularioBusca tipo="produto"/>
           break;
         default:
-          content = <div>Opção Inválida!</div>;
-          break;
+            content = null
+            break;
       }
       break;
     case "servico":

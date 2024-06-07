@@ -1,32 +1,15 @@
 import { Modal, Button } from "react-bootstrap"
 
-interface ConfirmarExclusaoProps{
+interface ModalExclusãoProps{
     tipo: 'cliente' | 'produto' | 'servico'
     onHide : () =>void
-    clienteId?:string
-    produtoId?: string
-    servicoId?: string
+    id: string
     show: boolean
-    onConfirmarExclusao: (id: string | undefined) => void;
 }
 
-function ConfirmarExclusao({tipo, onHide, clienteId, produtoId, servicoId, show, onConfirmarExclusao}: ConfirmarExclusaoProps){
-    let id: string | undefined
-    switch(tipo){
-        case 'cliente':
-            id =clienteId
-            break
-        case "produto":
-            id= produtoId
-            break
-        case "servico":
-            id = servicoId
-            break
-        default :
-            break
-    }
-    function handleConfirm(id: string | undefined){
-        onConfirmarExclusao(id)
+function ModalExcluir({tipo, onHide,  show, id }: ModalExclusãoProps){
+    function handleDeleteChanges(){
+        alert(`Deletado!`)
         onHide()
     }
     return(
@@ -41,11 +24,11 @@ function ConfirmarExclusao({tipo, onHide, clienteId, produtoId, servicoId, show,
             <Button variant="outline-dark"  onClick={onHide} style={{ margin:'0.5rem', boxShadow: 'none', border: 'none' }}>
                 Cancelar
             </Button>
-            <Button variant="danger" onClick={() => handleConfirm(id)} style={{ margin:'0.5rem', boxShadow: 'none', border: 'none' }}>
+            <Button variant="danger" onClick={handleDeleteChanges} style={{ margin:'0.5rem', boxShadow: 'none', border: 'none' }}>
                 Excluir
             </Button>
         </Modal.Footer>
     </Modal>
     )
 }
-export default ConfirmarExclusao
+export default ModalExcluir

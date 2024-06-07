@@ -22,18 +22,46 @@ function FormularioVenda() {
         <div className="formVenda">
             <Seletor opcoes={options} onChange={handleOptionChange} />
             {selectedOption && (
-                <form className="">
+                <form className="" >
                     <div className="formVenda">
                         <div className="input-field">
-                            <input id="cpfCliente" type="text" className="validate" name="cpfCliente" />
-                            <label htmlFor="cpfCliente">CPF do Cliente</label>
+                            <input 
+                            required
+                            id="cliId" 
+                            type="number" 
+                            className="validate" 
+                            name="cliId" 
+                            />
+                            <label htmlFor="cliId">Id do Cliente</label>
                         </div>
                         <div className="input-field">
-                            <input id="idProduto" type="text" className="validate" name="idProduto" />
-                            <label htmlFor="idProduto">Id do {valor}</label>
+                            <input 
+                            required
+                            id="funcionarioId" 
+                            type="number" 
+                            className="validate" 
+                            name="funcionarioId" 
+                            />
+                            <label htmlFor="funcionarioId">Id do Funcionario</label>
                         </div>
                         <div className="input-field">
-                            <input id="quantidade" type="text" className="validate" name="quantidade" />
+                            <input 
+                            required
+                            id="id" 
+                            type="number" 
+                            className="validate" 
+                            name="id" 
+                            />
+                            <label htmlFor="id">Id do {valor}</label>
+                        </div>
+                        <div className="input-field">
+                            <input 
+                            required
+                            id="quantidade" 
+                            type="number" 
+                            className="validate"
+                             name="quantidade" 
+                             />
                             <label htmlFor="quantidade">Quantidade Consumida</label>
                         </div>
                     </div>

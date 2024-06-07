@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import EditarModal from "../Modal/editar";
-import ConfirmarExclusao from "../Modal/confirmarExclusão";
 import { ICliente, IProduto, IServico } from "./Interface/interface";
 import './style.css'
+import ModalExcluir from "../Modal/excluir";
 
 interface ViewProps {
     tipo: 'cliente' | 'produto' | 'servico';
@@ -32,11 +32,6 @@ function View({ tipo, cliente, produto, servico }: ViewProps) {
         setModalAbertoExclusao(false);
     };
 
-    function handleConfirmarExclusao(id: string | undefined) {
-        console.log("Excluir", id);
-        fecharModalExclusao();
-    };
-
     let content;
 
     switch (tipo) {
@@ -54,8 +49,8 @@ function View({ tipo, cliente, produto, servico }: ViewProps) {
                             <Button variant="danger" onClick={abrirModalExclusao} style={{ margin: '0.5rem', boxShadow: 'none', border: 'none' }}>Deletar</Button>
                         </Card.Body>
                     </Card>
-                    {modalAberto && <EditarModal show={modalAberto} onHide={fecharModal} tipo="cliente" />}
-                    {modalAbertoExclusao && <ConfirmarExclusao show={modalAbertoExclusao} onHide={fecharModalExclusao} clienteId="1" onConfirmarExclusao={handleConfirmarExclusao} tipo="cliente"/>}
+                    {modalAberto && <EditarModal show={modalAberto} onHide={fecharModal} tipo="cliente" id={'1'} />}
+                    {modalAbertoExclusao && <ModalExcluir show={modalAbertoExclusao} onHide={fecharModalExclusao} id="1" tipo="cliente"/>}
                     <br />
                 </div>
             );
@@ -72,8 +67,8 @@ function View({ tipo, cliente, produto, servico }: ViewProps) {
                             <Button variant="danger" onClick={abrirModalExclusao} style={{ margin: '0.5rem', boxShadow: 'none', border: 'none' }}>Deletar</Button>
                         </Card.Body>
                     </Card>
-                    {modalAberto && <EditarModal show={modalAberto} onHide={fecharModal} tipo="produto" />}
-                    {modalAbertoExclusao && <ConfirmarExclusao show={modalAbertoExclusao} onHide={fecharModalExclusao} produtoId="1" onConfirmarExclusao={handleConfirmarExclusao} tipo="produto"/>}
+                    {modalAberto && <EditarModal show={modalAberto} onHide={fecharModal} tipo="produto" id={'1'} />}
+                    {modalAbertoExclusao && <ModalExcluir show={modalAbertoExclusao} onHide={fecharModalExclusao} id="1" tipo="produto"/>}
                     <br />
                 </div>
             );
@@ -90,8 +85,8 @@ function View({ tipo, cliente, produto, servico }: ViewProps) {
                             <Button variant="danger" onClick={abrirModalExclusao} style={{ margin: '0.5rem', boxShadow: 'none', border: 'none' }}>Deletar</Button>
                         </Card.Body>
                     </Card>
-                    {modalAberto && <EditarModal show={modalAberto} onHide={fecharModal} tipo="servico" />}
-                    {modalAbertoExclusao && <ConfirmarExclusao show={modalAbertoExclusao} onHide={fecharModalExclusao} servicoId="1" onConfirmarExclusao={handleConfirmarExclusao} tipo="servico"/>}
+                    {modalAberto && <EditarModal show={modalAberto} onHide={fecharModal} tipo="servico" id="1"/>}
+                    {modalAbertoExclusao && <ModalExcluir show={modalAbertoExclusao} onHide={fecharModalExclusao} id="1" tipo="servico"/>}
                     <br />
                 </div>
             );

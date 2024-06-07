@@ -2,6 +2,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import { useEffect } from 'react';
 import M from 'materialize-css';
 import './style.css'; 
+import { Button } from 'react-bootstrap';
 
 interface NavBarProps {
     botoes: { nome: string, rota: string }[]
@@ -28,6 +29,7 @@ function BarraNavegacao({ botoes }: NavBarProps) {
                                 <a href={botao.rota} style={{ fontSize: '18px' }}>{botao.nome}</a>
                             </li>
                         ))}
+                         <Button variant='danger' style={{ marginRight: '1rem' }}>Sair</Button>
                     </ul>
                 </div>
             </nav>
