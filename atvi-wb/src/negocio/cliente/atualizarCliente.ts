@@ -25,13 +25,61 @@ export default class AtualizarCliente extends Atualizar {
       let cliente = this.clientes.find((cliente) => cliente.getCpf.getValor === cpfCliente)
 
       if (cliente) {
-        console.log(`\nInício da edição do cliente `)
+        console.log(`--------------------------------------`)
+        console.log("  Iniciando Atualização do Cliente")
+        console.log(`--------------------------------------`)
 
-        let novoNome = this.entrada.receberTexto("Digite o seu novo nome: ")
-        cliente.setNome(novoNome)
-
-        let novoNomeSocial = this.entrada.receberTexto("Digite o seu novo nome social: ")
-        cliente.setNomeSocial(novoNomeSocial)
+       // Muda nome
+        let opcaoEscolhidaNome = 0
+        while(opcaoEscolhidaNome< 1 || opcaoEscolhidaNome > 2){
+          console.log("Deseja atualizar seu nome atual? ")
+          console.log(`1 - Sim`)
+          console.log(`2 - Não`)
+          opcaoEscolhidaNome = this.entrada.receberNumero(`Digite a opção desejada: `)
+          switch(opcaoEscolhidaNome){
+            case 1:
+              let novoNome = this.entrada.receberTexto("Digite o seu novo nome: ")
+              cliente.setNome(novoNome)
+              while (novoNome.trim() === '') {
+                novoNome = this.entrada.receberTexto("Por favor, digite o seu novo nome corretamente: ");
+                cliente.setNome(novoNome);
+              }
+              break
+            case 2:
+              console.log(`--------------------------------------`)
+              console.log("         Próxima operação...")
+              console.log(`--------------------------------------`)
+              break
+            default:
+              console.log("Opção inválida. Escolha novamente.")
+          }
+        }
+        
+        // Muda nome social
+        let opcaoEscolhidaNomeSocial = 0
+        while(opcaoEscolhidaNomeSocial< 1 || opcaoEscolhidaNomeSocial > 2){
+          console.log("Deseja atualizar o nome social? ")
+          console.log(`1 - Sim`)
+          console.log(`2 - Não`)
+          opcaoEscolhidaNomeSocial = this.entrada.receberNumero(`Digite a opção desejada: `)
+          switch(opcaoEscolhidaNomeSocial){
+            case 1:
+              let novoNomeSocial = this.entrada.receberTexto("Digite o seu novo nome social: ")
+              cliente.setNomeSocial(novoNomeSocial)
+              while(novoNomeSocial.trim() === ''){
+                let novoNomeSocial = this.entrada.receberTexto("Por favor, digite o seu novo nome social corretamente: ")
+                cliente.setNomeSocial(novoNomeSocial)
+              }
+              break
+            case 2:
+              console.log(`--------------------------------------`)
+              console.log("         Próxima operação...")
+              console.log(`--------------------------------------`)
+              break
+            default:
+              console.log("Opção inválida. Escolha novamente.")
+          }
+        }
 
         // Gênero
         let opcaoEscolhidaGen = 0
@@ -55,6 +103,7 @@ export default class AtualizarCliente extends Atualizar {
               console.log("Opção inválida. Escolha novamente.")
           }
         }
+
         // cpf
         let opcaoEscolhidaCpf = 0
         while (opcaoEscolhidaCpf < 1 || opcaoEscolhidaCpf > 2) {
@@ -76,6 +125,7 @@ export default class AtualizarCliente extends Atualizar {
               console.log("Opção inválida. Escolha novamente.")
           }
         }
+
         // RG
         let opcaoEscolhidaRg = 0
         while (opcaoEscolhidaRg < 1 || opcaoEscolhidaRg > 4) {
@@ -91,10 +141,13 @@ export default class AtualizarCliente extends Atualizar {
           switch(opcaoEscolhidaRg){
             case 1:
               this.modificarRg(cliente)
+              break
             case 2:
               this.adicionaRg(cliente)
+              break
             case 3:
               this.apagaRg(cliente)
+              break
             case 4:
               console.log(`--------------------------------------`)
               console.log("         Próxima operação...")
@@ -104,6 +157,7 @@ export default class AtualizarCliente extends Atualizar {
               console.log("Opção inválida. Escolha novamente.")
           }
         }
+
         //telefone
         let opcaoEscolhidaTel = 0
         while (opcaoEscolhidaTel < 1 || opcaoEscolhidaTel > 4) {
@@ -118,12 +172,17 @@ export default class AtualizarCliente extends Atualizar {
           switch(opcaoEscolhidaTel){
             case 1:
               this.modificaTelefone(cliente)
+              break
             case 2:
               this.adicionarTelefone(cliente)
+              break
             case 3:
               this.apagaTelefone(cliente)
+              break
             case 4:
-              console.log("Próxima operação...")
+              console.log(`--------------------------------------`)
+              console.log("         Próxima operação...")
+              console.log(`--------------------------------------`)
               break
             default:
               console.log("Opção inválida. Escolha novamente.")
@@ -134,9 +193,6 @@ export default class AtualizarCliente extends Atualizar {
         console.log(`  Cadastro atualizado com sucesso! :)`)
         console.log(`--------------------------------------`)
         encontrarCliente = true
-        
-  
-      
     } else {
         console.log("Cliente não encontrado. Tente novamente.")
       }
@@ -216,7 +272,15 @@ export default class AtualizarCliente extends Atualizar {
 
     for (let x = 0; x < quantRg; x++) {
       let valorRG = this.entrada.receberTexto(`Por favor, informe o número do rg: `)
+      while (valorRG.trim() === ''){
+        valorRG = this.entrada.receberTexto(`Por favor, informe o número do rg corretamente: `)
+      }
+
       let dataRG = this.entrada.receberTexto(`Por favor, informe a data de emissão do rg, no padrão dd/mm/yyyy: `)
+      while(dataRG.trim() === ''){
+        dataRG = this.entrada.receberTexto(`Por favor, informe a data de emissão do rg, no padrão dd/mm/yyyy: `)
+      }
+
       let rg = new RG(valorRG, this.recebeData(dataRG));
       cliente.getRgs.push(rg)
       console.log(`RG adicionado com sucesso :)`)
@@ -231,10 +295,19 @@ export default class AtualizarCliente extends Atualizar {
       let dataRG = this.entrada.receberTexto(`Por favor, informe a data de emissão do rg, no padrão dd/mm/yyyy: `)
       const clienteRgs = cliente.getRgs;
       const encontraRg = clienteRgs.find(rg => rg.getValor === valorRG && rg.getDataEmissao === this.recebeData(dataRG))
+
       if (encontraRg) {
         rgEncontrado = true;
-        const novoValorRg = this.entrada.receberTexto(`Digite o novo valor do RG: `)
-        const novaDataRg = this.entrada.receberTexto(`Por favor, informe a nova data de emissão do rg, no padrão dd/mm/yyyy: `)
+        let novoValorRg = this.entrada.receberTexto(`Digite o novo valor do RG: `)
+        while(novoValorRg.trim() === ''){
+          novoValorRg = this.entrada.receberTexto(`Por favor, digite o novo valor do RG corretamente: `)
+        }
+
+        let novaDataRg = this.entrada.receberTexto(`Por favor, informe a nova data de emissão do rg, no padrão dd/mm/yyyy: `)
+        while(novaDataRg.trim() === ''){
+          novaDataRg = this.entrada.receberTexto(`Por favor, informe a nova data de emissão do rg, no padrão dd/mm/yyyy: `)
+        }
+
         cliente.mudarRgCliente(encontraRg, novoValorRg, this.recebeData(novaDataRg))
         console.log(`RG modificado com sucesso :)`)
       } else {
@@ -259,7 +332,7 @@ export default class AtualizarCliente extends Atualizar {
       const clienteRgs = cliente.getRgs
       const indexRg = clienteRgs.findIndex(rg =>rg.getValor === valorRG && rg.getDataEmissao === this.recebeData(dataRG))
 
-      if (indexRg) {
+      if (indexRg >= 0) {
         clienteRgs.splice(indexRg, 1)
         console.log(`RG excluido com sucesso :)`)
         rgEncontrado = true
@@ -268,7 +341,10 @@ export default class AtualizarCliente extends Atualizar {
         console.log(`Deseja tentar novamente? `)
         console.log(`1 - Sim`)
         console.log(`2 - Não`)
-        const opcaoEscolhida = this.entrada.receberNumero("Digite a opção que deseja: ")
+        let opcaoEscolhida = 0
+        while (opcaoEscolhida <1 || opcaoEscolhida >2){
+          opcaoEscolhida = this.entrada.receberNumero("Digite a opção que deseja: ")
+        }
         if (opcaoEscolhida === 2) {
           break
         }
@@ -281,8 +357,16 @@ export default class AtualizarCliente extends Atualizar {
     let quantTel = this.entrada.receberNumero("Digite a quantidade de Telefones que você deseja adicionar: ");
 
     for (let x = 0; x < quantTel; x++) {
-      let telDDD = this.entrada.receberTexto("Digite o numero do DDD: ");
-      let telNumero = this.entrada.receberTexto(`Digite o numero agora: `);
+      let telDDD = this.entrada.receberTexto("Digite o numero do DDD: ")
+      while(telDDD.trim() === ''){
+        telDDD = this.entrada.receberTexto("Por favor, digite o numero do DDD correto: ")
+      }
+
+      let telNumero = this.entrada.receberTexto(`Digite o numero agora: `)
+      while(telNumero.trim() === ''){
+        telNumero = this.entrada.receberTexto(`Por favor, digite o numero agora correto: `)
+      }
+
       let telefone = new Telefone(telDDD, telNumero);
       cliente.getTelefones.push(telefone);
       console.log(`Telefone adicionado com sucesso :)`)
@@ -300,8 +384,16 @@ export default class AtualizarCliente extends Atualizar {
       const encontraTel = telefonesClientes.find(telefone => telefone.getDdd === valorDDD && telefone.getNumero === valorNumero);
 
       if (encontraTel) {
-        let novoDdd = this.entrada.receberTexto("Digite o numero do DDD: ");
-        let novoNumero = this.entrada.receberTexto(`Digite o numero agora: `);
+        let novoDdd = this.entrada.receberTexto("Digite o numero do DDD: ")
+        while(novoDdd.trim() === ''){
+          novoDdd = this.entrada.receberTexto("Digite o numero do DDD: ")
+        }
+        
+        let novoNumero = this.entrada.receberTexto(`Digite o numero agora: `)
+        while(novoNumero.trim() === ''){
+          novoNumero = this.entrada.receberTexto(`Digite o numero agora: `)
+        }
+
         cliente.mudarTelefoneCliente(encontraTel, novoDdd, novoNumero);
         console.log(`Telefone modificado com sucesso :)`)
         telefoneEncontrado = true;
@@ -310,7 +402,10 @@ export default class AtualizarCliente extends Atualizar {
         console.log(`Deseja tentar novamente? `);
         console.log(`1 - Sim`);
         console.log(`2 - Não`);
-        let opcaoEscolhida = this.entrada.receberNumero("Digite a opção que deseja: ");
+        let opcaoEscolhida = 0
+        while(opcaoEscolhida <1 || opcaoEscolhida > 2){
+          opcaoEscolhida = this.entrada.receberNumero("Digite a opção que deseja: ")
+        }
         if (opcaoEscolhida === 2) {
           break;
         }
@@ -328,7 +423,7 @@ export default class AtualizarCliente extends Atualizar {
       const telefonesCliete = cliente.getTelefones;
       const encontraIndexTel = telefonesCliete.findIndex(telefone => telefone.getDdd === valorDDD && telefone.getNumero === valorNumero);
 
-      if (encontraIndexTel) {
+      if (encontraIndexTel >= 0) {
         telefonesCliete.splice(encontraIndexTel, 1);
         console.log(`Telefone excluido com sucesso :)`)
         telefoneEncontrado = true;
@@ -337,7 +432,10 @@ export default class AtualizarCliente extends Atualizar {
         console.log(`Deseja tentar novamente? `);
         console.log(`1 - Sim`);
         console.log(`2 - Não`);
-        const opcaoEscolhida = this.entrada.receberNumero("Digite a opção que deseja: ");
+        let opcaoEscolhida = 0
+        while(opcaoEscolhida <1 || opcaoEscolhida > 2){
+          opcaoEscolhida = this.entrada.receberNumero("Digite a opção que deseja: ")
+        }
         if (opcaoEscolhida === 2) {
           break;
         }

@@ -21,7 +21,7 @@ export default class DeletarProduto extends Deletar {
         while (encontraProduto === false) {
             const idProduto = this.entrada.receberNumero(`Digite o Id do produto que deseja deletar: `)
             const produtoIndex = this.produtos.findIndex(produto => produto.getId === idProduto)
-            if (produtoIndex) {
+            if (produtoIndex >= 0) {
                 this.produtos.splice(produtoIndex, 1)
                 console.log(`Produto Deletado:)`)
                 encontraProduto = true
@@ -32,9 +32,12 @@ export default class DeletarProduto extends Deletar {
                 console.log(`1 - Sim`)
                 console.log(`2 - Não`)
                 let simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `)
-                if (simOuNao === 2) {
-                    break
-                }
+                    while(simOuNao <1 || simOuNao > 2){
+                        simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `)
+                    }
+                    if (simOuNao === 2) {
+                        break;
+                    }
             }
         }}
         else{

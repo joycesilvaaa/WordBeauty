@@ -16,12 +16,17 @@ export default class ListagemProdutos extends Listagem {
     public listar(): void {
         console.log(`Escolha uma opção para listagem de produto:`);
         console.log(`1 - Produtos mais consumidos por gênero`);
-        console.log(`2 - 10 Clientes que mais consumiram produtos(quantidade)`);
+        console.log(`2 - 10 Clientes que mais consumiram produtos (quantidade)`);
         console.log(`3 - Produtos mais consumidos`);
-        console.log(`4 - 5 Clientes que mais consumiram produtos(valor)`);
+        console.log(`4 - 5 Clientes que mais consumiram produtos (valor)`);
         console.log(`5 - Listar Todos os Produtos Cadastrados `)
         console.log(`6 - Voltar`);
-        let opcaoEscolhida = this.entrada.receberNumero(`Digite a opção desejada: `);
+        let opcaoEscolhida = this.entrada.receberNumero(`Digite a opção desejada: `)
+        while (opcaoEscolhida < 1 || opcaoEscolhida > 6){
+            opcaoEscolhida = this.entrada.receberNumero(
+                `Digite a opção desejada: `
+            )
+        }
         switch (opcaoEscolhida) {
             case 1:
                 this.listarProdutosGenero();
@@ -40,8 +45,6 @@ export default class ListagemProdutos extends Listagem {
                 break;
             case 6:
                 break
-            default:
-                console.log(`Opção inválida! Escolha novamente.`);
         }
     }
     private listarProdutosGenero(): void {

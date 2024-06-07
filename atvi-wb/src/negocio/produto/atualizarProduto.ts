@@ -21,7 +21,10 @@ export default class AtualizarProduto extends Atualizar {
                 const idProduto = this.entrada.receberNumero(`Digite o id do produto que deseja atualizar: `);
                 const produto = this.produtos.find((produto) => produto.getId === idProduto);
                 if (produto) {
-                    const novoNomeProduto = this.entrada.receberTexto(`Digite o nome do produto que deseja cadastrar: `);
+                    let novoNomeProduto = this.entrada.receberTexto(`Digite o nome do produto que deseja cadastrar: `)
+                    while(novoNomeProduto.trim() ===  ''){
+                        novoNomeProduto = this.entrada.receberTexto(`Digite o nome do produto que deseja cadastrar: `)
+                    }
                     const novoValorProduto = this.entrada.receberNumero(`Digite o valor do produto: R$`);
                     produto.setNome(novoNomeProduto);
                     produto.setValorProduto(novoValorProduto);
@@ -32,7 +35,10 @@ export default class AtualizarProduto extends Atualizar {
                     console.log(`Produto não encontrado! Deseja tentar novamente? `);
                     console.log(`1 - Sim`);
                     console.log(`2 - Não`);
-                    let simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `);
+                    let simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `)
+                    while(simOuNao <1 || simOuNao > 2){
+                        simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `)
+                    }
                     if (simOuNao === 2) {
                         break;
                     }

@@ -19,10 +19,20 @@ export default class CadastroCliente extends Cadastro {
 
     let nome = this.entrada.receberTexto(
       `Por favor informe o nome do cliente: `
-    );
+    )
+    while (nome.trim() === ''){
+      nome = this.entrada.receberTexto(
+        `Por favor informe o nome do cliente: `
+      )
+    }
     let nomeSocial = this.entrada.receberTexto(
       `Por favor informe o nome social do cliente: `
-    );
+    )
+    while (nomeSocial.trim() === ''){
+      nomeSocial = this.entrada.receberTexto(
+        `Por favor informe o nome social do cliente: `
+      )
+    }
 
     // Gênero
     let opcaoEscolhida = 0;
@@ -59,7 +69,6 @@ export default class CadastroCliente extends Cadastro {
     // cpf
     let valorCPF: string;
     let verificaCpf: number;
-
     while (true) {
       valorCPF = this.entrada.receberTexto(
         `Por favor, informe o número do CPF: `
@@ -77,7 +86,12 @@ export default class CadastroCliente extends Cadastro {
 
     let dataCPF = this.entrada.receberTexto(
       `Por favor, informe a data de emissão do CPF, no padrão dd/mm/yyyy: `
-    );
+    )
+    while (dataCPF.trim() ===  ''){
+      dataCPF = this.entrada.receberTexto(
+        `Por favor, informe a data de emissão do CPF, no padrão dd/mm/yyyy: `
+      )
+    }
     let cpf = new CPF(valorCPF, this.recebeData(dataCPF));
 
     // rg
@@ -90,10 +104,22 @@ export default class CadastroCliente extends Cadastro {
     for (let x = 0; x < quantRg; x++) {
       let valorRG = this.entrada.receberTexto(
         `Por favor, informe o número do rg: `
-      );
+      )
+      while (valorRG.trim() === ''){
+        valorRG = this.entrada.receberTexto(
+          `Por favor, informe o número do rg corretamente: `
+        )
+      }
+
       let dataRG = this.entrada.receberTexto(
         `Por favor, informe a data de emissão do rg, no padrão dd/mm/yyyy: `
-      );
+      )
+      while(dataRG.trim() === ''){
+        dataRG = this.entrada.receberTexto(
+          `Por favor, informe corretamente a data de emissão do rg, no padrão dd/mm/yyyy: `
+        )
+      }
+
       let rg = new RG(valorRG, this.recebeData(dataRG));
       cliente.getRgs.push(rg);
     }
@@ -104,8 +130,16 @@ export default class CadastroCliente extends Cadastro {
     );
 
     for (let x = 0; x < quantTel; x++) {
-      let telDDD = this.entrada.receberTexto("Digite o numero do DDD: ");
-      let telNumero = this.entrada.receberTexto(`Digite o numero agora: `);
+      let telDDD = this.entrada.receberTexto("Digite o DDD: ")
+      while(telDDD.trim() ===  ''){
+        telDDD = this.entrada.receberTexto("Por favor, digite o DDD corretamente: ")
+      }
+
+      let telNumero = this.entrada.receberTexto(`Digite o numero agora: `)
+      while(telNumero.trim() === ''){
+        telNumero = this.entrada.receberTexto(`Por favor, digite o numero corretamente: `)
+      }
+
       let telefone = new Telefone(telDDD, telNumero);
       cliente.getTelefones.push(telefone);
     }

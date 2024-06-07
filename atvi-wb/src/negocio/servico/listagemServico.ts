@@ -24,7 +24,12 @@ export default class ListagemServico extends Listagem {
         console.log(`6 - Voltar`);
         let opcaoEscolhida = this.entrada.receberNumero(
             `Digite a opção desejada: `
-        );
+        )
+        while (opcaoEscolhida < 1 || opcaoEscolhida > 6){
+            opcaoEscolhida = this.entrada.receberNumero(
+                `Digite a opção desejada: `
+            )
+        }
         switch (opcaoEscolhida) {
             case 1:
                 this.listarServicoGenero()
@@ -42,9 +47,7 @@ export default class ListagemServico extends Listagem {
                 this.listarTodosProdutos()
                 break
             case 6:
-                break;
-            default:
-                console.log(`Opção inválida! Escolha novamente.`);
+                break
         }
     }
     private listarServicoGenero(): void {
@@ -96,7 +99,7 @@ export default class ListagemServico extends Listagem {
                 const servico = servicosConsumido.find(servico => servico.getId === servicoId)
 
                 if (servico) {
-                    console.log(`${index++}. Nome: ${servico?.getNome}, Quantidade Consumida ${quantidade}`)
+                    console.log(`${index + 1}. Nome: ${servico?.getNome}, Quantidade Consumida ${quantidade}`)
                 }
             })
         }
@@ -113,11 +116,11 @@ export default class ListagemServico extends Listagem {
         }
         const clientesOrdenados = Array.from(contadorServico.entries()).sort((a, b) => b[1] - a[1])
 
-        console.log(`Listagem dos 10 clientes que mais consumiram serviço (quantidade):`)
+        console.log(`Listagem dos 10 clientes que mais consumiram serviço (quantidade)`)
 
         clientesOrdenados.slice(0, 10).forEach((clienteAtual, index) => {
             const [cliente, quantidade] = clienteAtual
-            console.log(`${index++}. Cliente: ${cliente.nome}, Quantidade de Serviços Consumidos: ${quantidade}`)
+            console.log(`${index + 1}. Cliente: ${cliente.nome}, Quantidade de Serviços Consumidos: ${quantidade}`)
         })
     }
     private listarMaisConsumidos(): void {
@@ -136,7 +139,7 @@ export default class ListagemServico extends Listagem {
 
         servicosOrdenados.splice(0, 10).forEach((servicoAtual, index) => {
             const [servico, quantidade] = servicoAtual
-            console.log(`${index++}. Serviço: ${servico.getNome}, Quantidade Consumida: ${quantidade}`)
+            console.log(`${index + 1}. Serviço: ${servico.getNome}, Quantidade Consumida: ${quantidade}`)
         })
     }
     private listarTop5(): void {
@@ -151,22 +154,26 @@ export default class ListagemServico extends Listagem {
         }
         const clientesOrdenados = Array.from(contadorServico.entries()).sort((a, b) => b[1] - a[1])
 
-        console.log(`Top 5 clientes que mais consumiram serviços (em valor):`);
+        console.log(`Top 5 clientes que mais consumiram serviços (em valor):`)
+        
         // Exibe os 5 primeiros clientes da lista ordenada
         clientesOrdenados.slice(0, 5).forEach((clienteAtual, index) => {
             const [cliente, valorTotal] = clienteAtual;
             console.log(`${index + 1}. Cliente: ${cliente.nome}, Valor Total Consumido: R$${valorTotal.toFixed(2)}`);
-        });
+        })
     }
     private listarTodosProdutos():void{
         console.log(`-----------------------------------------------`)
         console.log(`          Todos os Serviços Cadastrados`)
         console.log(`-----------------------------------------------`)
+        if (this.servicos.length > 0){
         this.servicos.forEach(servico => {
             console.log(`Id: ${servico.getId} Nome: ${servico.getNome}`)
             console.log(`Descrição: ${servico.getDescricao}`)
             console.log(`Valor: $${servico.getValorDoServico.toFixed(2)}`)
         console.log(`-----------------------------------------------`)
-        })
+        })}else{
+            console.log(`O Sistema não possui serviços cadastrados.`)
+        }
     }
 }

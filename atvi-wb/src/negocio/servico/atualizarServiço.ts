@@ -22,9 +22,18 @@ export default class AtualizaServico extends Atualizar {
       const servicoId = this.entrada.receberNumero(`Digite o ID do serviço que deseja atualizar: `);
       const servicoEscolhido = this.servicos.find((servico) => servico.getId === servicoId);
       if (servicoEscolhido) {
-        const novoNomeServico = this.entrada.receberTexto(`Digite o novo nome do serviço: `);
-        const novaDescricaoServico = this.entrada.receberTexto(`Digite a descrição do produto atualizada: `);
-        const novoValorServico = this.entrada.receberNumero(`Digite o novo valor do serviço:`);
+        let novoNomeServico = this.entrada.receberTexto(`Digite o novo nome do serviço: `)
+        while(novoNomeServico.trim() === ''){
+          novoNomeServico = this.entrada.receberTexto(`Digite o novo nome do serviço: `)
+        }
+        let novaDescricaoServico = this.entrada.receberTexto(`Digite a descrição do produto atualizada: `)
+        while(novaDescricaoServico.trim()=== ''){
+          novaDescricaoServico = this.entrada.receberTexto(`Digite a descrição do produto atualizada: `)
+        }
+        let novoValorServico = this.entrada.receberNumero(`Digite o novo valor do serviço: `)
+        while(novoValorServico< 0){
+          novoValorServico = this.entrada.receberNumero(`Digite o novo valor do serviço: `)
+        }
         servicoEscolhido.setNome(novoNomeServico);
         servicoEscolhido.setDescricao(novaDescricaoServico);
         servicoEscolhido.setValorServico(novoValorServico);
@@ -35,9 +44,12 @@ export default class AtualizaServico extends Atualizar {
         console.log(`Serviço não encontrado! Deseja tentar novamente? `);
         console.log(`1 - Sim`);
         console.log(`2 - Não`);
-        let simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `);
+        let simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `)
+        while(simOuNao <1 || simOuNao > 2){
+            simOuNao = this.entrada.receberNumero(`Digite a opção desejada: `)
+        }
         if (simOuNao === 2) {
-          break;
+            break;
         }
       }
     }}else{

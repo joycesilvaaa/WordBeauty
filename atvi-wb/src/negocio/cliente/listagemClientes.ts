@@ -10,6 +10,7 @@ export default class ListagemClientes extends Listagem {
     this.clientes = clientes;
     this.entrada = new Entrada();
   }
+  
   public listar(): void {
     let opcaoEscolhida = 0;
     while (opcaoEscolhida < 1 || opcaoEscolhida > 4) {
@@ -38,21 +39,23 @@ export default class ListagemClientes extends Listagem {
       }
     }
   }
+
+  // lISTAGEM CLIENTE
   private listarClienteEspecifico(): void {
     let encontradoCliente = false;
 
     while (encontradoCliente === false) {
       let cpfCliente = this.entrada.receberTexto("Digite o CPF do cliente que deseja visualizar: ");
-      let clienteIndex = this.clientes.findIndex(cliente => cliente.getCpf.getValor === cpfCliente);
+      let clienteIndex = this.clientes.findIndex(cliente => cliente.getCpf.getValor === cpfCliente)
 
-      if (clienteIndex) {
+      if (clienteIndex >= 0) {
         encontradoCliente = true;
         console.log(`\nInformações do cliente desejado:`);
         console.log(`--------------------------------------`);
         console.log(`Nome: ${this.clientes[clienteIndex].nome}`);
         console.log(`Nome social: ${this.clientes[clienteIndex].nomeSocial}`);
-        console.log(`CPF: ${this.clientes[clienteIndex].getCpf}`);
-        console.log(`Gênero: ${this.clientes[clienteIndex].getGenero}`);
+        console.log(`CPF: ${this.clientes[clienteIndex].getCpf.getValor}`);
+        console.log(`Gênero: ${this.clientes[clienteIndex].getGenero.getValor}`);
 
         const rgs = this.clientes[clienteIndex].getRgs;
 
@@ -60,7 +63,7 @@ export default class ListagemClientes extends Listagem {
           console.log(`Você possui ${rgs.length} RG(s):`);
           rgs.forEach((rg, index) => {console.log(` - RG(${index + 1}): ${rg.getValor}`)});
         } else {
-          console.log("Você não possui nenhum RG cadastrado!");
+          console.log("Você não possui nenhum RG cadastrado.");
         }
 
         const telefones = this.clientes[clienteIndex].getTelefones;
@@ -71,7 +74,7 @@ export default class ListagemClientes extends Listagem {
             console.log(` - Telefone (${index + 1}): +${telefone.getDdd} ${telefone.getNumero}`)
           });
         } else {
-          console.log("Você não possui nenhum número de telefone cadastrado!");
+          console.log("Você não possui nenhum número de telefone cadastrado.");
         }
         encontradoCliente = true;
 
@@ -81,6 +84,7 @@ export default class ListagemClientes extends Listagem {
       }
     }
   }
+
   private listarPorGenero(): void {
     let opcaoEscolhida = 0;
     let genero: string = "";
@@ -90,8 +94,7 @@ export default class ListagemClientes extends Listagem {
       console.log(`          2 - Masculino`);
       console.log(`          3 - Não Binário`);
       console.log(`          4 - Não Identificado`);
-
-      opcaoEscolhida = this.entrada.receberNumero(`Digite a opção escolhida: `);
+      opcaoEscolhida = this.entrada.receberNumero(`Digite a opção escolhida: `)
 
       switch (opcaoEscolhida) {
         case 1:
@@ -114,7 +117,10 @@ export default class ListagemClientes extends Listagem {
     const clientePorGenero = this.clientes.filter(cliente => cliente.getGenero.getValor === genero)
 
     if (clientePorGenero.length > 0) {
+      console.log(`--------------------------------------`);
+      console.log(`         LISTAGEM POR GÊNERO`);
       clientePorGenero.forEach((cliente) => {
+        
         console.log(`--------------------------------------`);
 
         console.log(`Nome: ${cliente.nome}`);
@@ -148,8 +154,10 @@ export default class ListagemClientes extends Listagem {
       console.log(`Não há clientes do gênero ${genero}.`);
     }
   }
+  
   private listarTodosClientes(): void {
-    console.log(`\nLista de todos os clientes:`);
+    console.log(`--------------------------------------`)
+    console.log(`    LISTAGEM DE TODOS OS CLIENTES`);
     this.clientes.forEach((cliente) => {
       console.log(`--------------------------------------`);
 
@@ -166,7 +174,7 @@ export default class ListagemClientes extends Listagem {
           console.log(` - Rg(${index + 1}): ${rg.getValor}`);
         });
       } else {
-        console.log("Você não possui nenhum RG cadastrado!");
+        console.log("Você não possui nenhum RG cadastrado.");
       }
 
       const tels = cliente.getTelefones;
@@ -176,7 +184,7 @@ export default class ListagemClientes extends Listagem {
           console.log(` - Telefone (${index + 1}): +${tel.getDdd} ${tel.getNumero}`)
         });
       } else {
-        console.log("Você não possui numero de telefone cadastrado!");
+        console.log("Você não possui numero de telefone cadastrado.");
       }
 
       console.log(`--------------------------------------`);

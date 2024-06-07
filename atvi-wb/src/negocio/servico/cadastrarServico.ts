@@ -11,10 +11,19 @@ export default class CadastroServico extends Cadastro {
     this.entrada = new Entrada();
   }
   public cadastrar(): void {
-    const nomeSevico = this.entrada.receberTexto(`Digite o nome do serviço que deseja cadastrar: `);
-    const descricaoServico = this.entrada.receberTexto(`Faça uma breve descrição do produto: `);
-    const valorServico = this.entrada.receberNumero(`Digite o valor do serviço a ser cadastrado: `);
+    let nomeSevico = this.entrada.receberTexto(`Digite o nome do serviço que deseja cadastrar: `)
+    while(nomeSevico.trim() === ''){
+      nomeSevico = this.entrada.receberTexto(`Digite o nome do serviço que deseja cadastrar: `)
+    }
+
+    let descricaoServico = this.entrada.receberTexto(`Faça uma breve descrição do produto: `)
+    while(descricaoServico.trim() === ''){
+      descricaoServico = this.entrada.receberTexto(`Faça uma breve descrição do produto: `)
+    }
+
+    let valorServico = this.entrada.receberNumero(`Digite o valor do serviço a ser cadastrado: `)
     const servico = new Servico(nomeSevico, descricaoServico, valorServico);
     this.servicos.push(servico);
+    console.log(`Serviço cadastrado :)`)
   }
 }

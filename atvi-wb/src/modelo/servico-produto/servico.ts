@@ -22,10 +22,10 @@ export default class Servico {
         return this.descricao
     }
     public get getValorDoServico():number{
-        return this.getValorDoServico
+        return this.valorDoServico
     }
-    public get getQuantConsumida(): string{
-        return this.getQuantConsumida
+    public get getQuantConsumida(){
+        return this.consumo
     }
     public setNome(novoNomeServico: string): void{
         this.nome = novoNomeServico
