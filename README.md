@@ -3,7 +3,7 @@
 ## Para Rodar o Projeto:
  - Clone este repositório.
 >
-    git clone https://github.com/joycesilvaaa/WorldBeauty.git
+    git clone https://github.com/joycesilvaaa/WorldBeauty/tree/atvi-wb
 >
 
 1. Acesse o diretório `atvi-wb`.
