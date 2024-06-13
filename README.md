@@ -3,7 +3,7 @@
 ## Para Rodar o Projeto:
  - Clone este repositório.
 >
-    git clone https://github.com/joycesilvaaa/WorldBeauty/tree/atviii-wb
+    git clone https://github.com/joycesilvaaa/WorldBeauty
 >
 
 1. Acesse o diretorio `atviii-wb`.
