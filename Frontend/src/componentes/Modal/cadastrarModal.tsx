@@ -9,10 +9,9 @@ interface CadastrarModalProps {
 }
 
 function CadastrarModal({ onHide, show }: CadastrarModalProps) {
-    // Inicializa com ''
     const [clienteNovo, setClienteNovo] = useState<CadastrarCliente>({
         nome: '',
-        sobrenome: '',
+        sobreNome: '',
         email: '',
         endereco: {
             estado: '',
@@ -67,12 +66,19 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
 
     async function handleSaveChanges() {
         try {
+            const verificaCampoVazio = Object.values(clienteNovo).some(value => 
+                typeof value === 'string' && (value.trim() === "" || value.trim().length === 0)
+              );
+          
+              if (verificaCampoVazio ) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+              }
             const resultado = await cadastrarCliente(clienteNovo);
-            if (!resultado) {
-                console.error(`Erro ao cadastrar cliente`);
-            }
-            alert(`Cadastro realizado com sucesso!`);
-            onHide();
+            console.log(clienteNovo)
+            alert(resultado?.message)
+            onHide()
+            window.location.reload();
         } catch (error) {
             console.error(`Erro ao cadastrar cliente: ${error}`);
         }
@@ -87,6 +93,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                 <div className="column">
                     <div className="input-field col s6">
                         <input
+                        required
                             id="nome"
                             type="text"
                             className="validate"
@@ -98,17 +105,19 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
-                            id="sobrenome"
+                        required
+                            id="sobreNome"
                             type="text"
                             className="validate"
-                            name="sobrenome"
-                            value={clienteNovo.sobrenome}
+                            name="sobreNome"
+                            value={clienteNovo.sobreNome}
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="sobrenome">Sobrenome</label>
+                        <label htmlFor="sobreNome">sobreNome</label>
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="email"
                             type="text"
                             className="validate"
@@ -120,6 +129,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="estado"
                             type="text"
                             className="validate"
@@ -131,6 +141,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="cidade"
                             type="text"
                             className="validate"
@@ -142,6 +153,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="bairro"
                             type="text"
                             className="validate"
@@ -153,6 +165,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="rua"
                             type="text"
                             className="validate"
@@ -164,6 +177,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="codigoPostal"
                             type="text"
                             className="validate"
@@ -175,6 +189,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                     </div>
                     <div className="input-field col s6">
                         <input
+                        required
                             id="informacoesAdicionais"
                             type="text"
                             className="validate"
@@ -189,6 +204,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                         <div key={index} className="telefone-fields">
                             <div className="input-field col s3">
                                 <input
+                                required
                                     id={`ddd-${index}`}
                                     type="text"
                                     className="validate"
@@ -200,6 +216,7 @@ function CadastrarModal({ onHide, show }: CadastrarModalProps) {
                             </div>
                             <div className="input-field col s9">
                                 <input
+                                required
                                     id={`numero-${index}`}
                                     type="text"
                                     className="validate"

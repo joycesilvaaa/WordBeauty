@@ -6,59 +6,30 @@ import { listaClientes } from "../../api/clienteApi";
 import EditarModal from "../Modal/editarModal";
 import ExcluirModal from "../Modal/excluirModal";
 import './style.css'
+import VisualizarModal from "../Modal/visualizarModal";
 
-function generateFakeClientes(quantity: number): Cliente[] {
-    const clientes: Cliente[] = [];
-    for (let i = 1; i <= quantity; i++) {
-        clientes.push({
-            id: i,
-            nome: `Cliente ${i}`,
-            sobrenome: `Sobrenome ${i}`,
-            email: `cliente${i}@exemplo.com`,
-            endereco: {
-                estado: `Estado ${i}`,
-                cidade: `Cidade ${i}`,
-                bairro: `Bairro ${i}`,
-                rua: `Rua ${i}`,
-                numero: `${i}`,
-                codigoPostal: `00000-${i}`,
-                informacoesAdicionais: `Informações adicionais para o cliente ${i}`,
-            },
-            telefones: [{ ddd: "00", numero: "123456789" }]
-        });
-    }
-    return clientes;
-}
 
 function ListagemClientes() {
     const [clientes, setClientes] = useState<Cliente[]>([]);
     const [showEditarModal, setShowEditarModal] = useState(false);
     const [showDeletarModal, setShowDeletarModal] = useState(false);
+    const [showVisualizarModal, setShowVisualizarModal] = useState(false)
     const [clienteId, setClienteId] = useState<number | null>(null);
 
-    // useEffect(() => {
-    //     async function fetchListaClientes() {
-    //         try {
-    //             const resultado = await listaClientes();
-    //             if (resultado) {
-    //                 setClientes(resultado.data);
-    //             } else {
-    //                 console.error("Erro ao listar clientes");
-    //             }
-    //         } catch (error) {
-    //             console.error(`Erro ao listar clientes: ${error}`);
-    //         }
-    //     }
-    //     fetchListaClientes();
-    // }, []);
-
     useEffect(() => {
-        const fakeClientes = generateFakeClientes(2); // Gera 10 clientes fictícios
-        setClientes(fakeClientes); // Define os clientes fictícios no estado
+        async function fetchListaClientes() {
+            try {
+                const data = await listaClientes();
+                setClientes(data)
+            } catch (error) {
+                console.error(`Erro ao listar clientes: ${error}`);
+            }
+        }
+        fetchListaClientes();
     }, []);
 
-    function handleEditar(id: number) {
 
+    function handleEditar(id: number) {
         console.log(id)
         setClienteId(id);
         setShowEditarModal(true);
@@ -69,11 +40,16 @@ function ListagemClientes() {
         setShowDeletarModal(true);
     }
 
+    function handleCliente(id: number){
+        setClienteId(id)
+        setShowVisualizarModal(true)
+    }
+
     return (
         <div className="clientes-lista">
             {clientes.map((cliente) => (
-                <div key={cliente.id} className="cliente-item">
-                    <div className="clientesSelecionar">
+                <div key={cliente.id} className="cliente-item" >
+                    <div className="clientesSelecionar" onClick={() => handleCliente(cliente.id)}>
                         <p>{cliente.nome}</p>
                     </div>
                     <div className="editar">
@@ -94,6 +70,12 @@ function ListagemClientes() {
                 show={showDeletarModal}
                 onHide={() => setShowDeletarModal(false)}
                 clientId={clienteId ? clienteId.toString() : ""}
+
+            />}
+            {showVisualizarModal && <VisualizarModal
+                show={showVisualizarModal}
+                onHide={() => setShowVisualizarModal(false)}
+                id={clienteId ? clienteId.toString() : ""}
 
             />}
         </div>

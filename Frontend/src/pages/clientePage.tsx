@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ClientePage() {
     useEffect(() => {
-        M.AutoInit(); // Inicializa todos os componentes do Materialize
+        M.AutoInit(); 
     }, []);
 
     const [showCadastrarModal, setShowCadastrarModal] = useState(false);

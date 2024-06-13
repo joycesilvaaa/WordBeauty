@@ -14,8 +14,9 @@ export interface Endereco {
 }
 
 export interface EditarCliente {
+    id: number
     nome?: string,
-    sobrenome?: string,
+    sobreNome?: string,
     email?: string,
     endereco?: {
         estado?: string;
@@ -31,7 +32,7 @@ export interface EditarCliente {
 
 export interface CadastrarCliente {
     nome: string,
-    sobrenome: string,
+    sobreNome: string,
     email: string,
     endereco: {
         estado: string;
@@ -48,7 +49,7 @@ export interface CadastrarCliente {
 export interface Cliente{
     id: number,
     nome: string,
-    sobrenome: string,
+    sobreNome: string,
     email: string,
     endereco: {
         estado: string;

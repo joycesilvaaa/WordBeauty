@@ -14,10 +14,11 @@ function ExcluirModal({ clientId, onHide, show }: ExcluirModalProps) {
         try{
             const id = parseInt(clientId)
             const resultado = await excluirCliente(id)
-            if(!resultado){
-                console.error(`Erro ao editar cliente`)
+            if(resultado?.success){
+                alert(resultado.message)
+                onHide()
+                window.location.reload();
             }
-            alert(`Cliente excluido com sucesso!`)
             onHide()
         }catch(error){
             console.error(`Erro ao excluir cliente: ${error}`)
