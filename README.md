@@ -1,4 +1,4 @@
-<h1>🌐Group World Beauty</h1>
+<h1>🌐World Beauty</h1>
 
 ## Para Rodar o Projeto:
  - Clone este repositório.
